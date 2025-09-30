@@ -42,7 +42,6 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
 
 
-    console.log(filtro);
 
     const [sorting, setSorting] = React.useState<SortingState>([])
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -71,6 +70,8 @@ export function DataTable<TData, TValue>({
             rowSelection,
         },
     })
+
+    console.log('columnas: ', columns, "datos: ", data);
 
     return (
         <div className="space-y-2">

@@ -11,7 +11,10 @@ import {
     Wallet,
     Receipt,
     Info, LogIn, UserPlus, Phone,
-    PackageOpen
+    PackageOpen,
+    Layers,
+    Map,
+    StoreIcon,
 } from "lucide-react";
 
 import {
@@ -25,6 +28,9 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
+    SidebarMenuSub,
+    SidebarMenuSubButton,
+    SidebarMenuSubItem,
     SidebarSeparator,
 } from "./ui/sidebar";
 
@@ -39,36 +45,44 @@ import {
 
 export const publicMenuItems = [
     {
-        title: "Inicio",
-        url: "/",
-        icon: Home,
-    },
-    {
         title: "Sobre DonPulpería",
         url: "/about",
         icon: Info,
-    },
-    {
-        title: "Iniciar Sesión",
-        url: "/login",
-        icon: LogIn,
-    },
-    {
-        title: "Registrarse",
-        url: "/register",
-        icon: UserPlus,
-    },
-    {
-        title: "Contacto",
-        url: "/contact",
-        icon: Phone,
+        subItems: [
+            {
+                title: "Planes",
+                url: "/pricing",
+                icon: Package,
+            },
+            {
+                title: "Funcionalidades",
+                url: "/features",
+                icon: Layers,
+            },
+            {
+                title: "Mapa de Comercios",
+                url: "/map",
+                icon: Map,
+            },
+            {
+                title: "Contacto",
+                url: "/contact",
+                icon: Phone,
+            },
+        ]
     },
 ];
+
 
 export const isAuthenticated = true;
 
 
 const menuItems = [
+    {
+        title: "Tienda",
+        url: "/panel-control/tienda",
+        icon: StoreIcon,
+    },
     {
         title: "Panel de control",
         url: "/panel-control",
@@ -118,12 +132,13 @@ const menuItems = [
 
 const AppSideBar = () => {
 
-    const menuItemsToShow = isAuthenticated ? menuItems : publicMenuItems;
+
+    const sinAutenticarTiendaItems = publicMenuItems[0].subItems
 
     return (
         <Sidebar collapsible="icon">
             {/* HEADER */}
-            <SidebarHeader>
+            <SidebarHeader className="mb-5">
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton asChild>
@@ -131,8 +146,8 @@ const AppSideBar = () => {
                                 <Image
                                     alt="logo"
                                     src={"/donjoe.jpg"}
-                                    width={24}
-                                    height={24}
+                                    width={40}
+                                    height={40}
                                     className="rounded-full"
                                 />
                                 <span className="font-semibold">donPulpería</span>
@@ -147,10 +162,10 @@ const AppSideBar = () => {
             {/* CONTENT */}
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>Menú principal</SidebarGroupLabel>
-                    <SidebarGroupContent>
+                    <SidebarGroupLabel>Menú</SidebarGroupLabel>
+                    {isAuthenticated ? (<SidebarGroupContent>
                         <SidebarMenu>
-                            {menuItemsToShow.map((item) => (
+                            {menuItems.map((item) => (
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton asChild>
                                         <Link href={item.url}>
@@ -161,44 +176,87 @@ const AppSideBar = () => {
                                 </SidebarMenuItem>
                             ))}
                         </SidebarMenu>
-                    </SidebarGroupContent>
+                    </SidebarGroupContent>) :
+                        (
+                            <SidebarMenu>
+                                <SidebarMenuItem>
+                                    <SidebarMenuButton asChild>
+                                        <Link href={'/'}>
+                                            <Home /> Inicio
+                                        </Link>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                                <SidebarMenuItem>
+                                    <SidebarMenuButton>
+                                        <Info /> Sobre DonPulpería
+                                    </SidebarMenuButton>
+                                    <SidebarMenuSub>
+                                        {sinAutenticarTiendaItems?.map((k) => (<SidebarMenuSubItem key={k.title}>
+                                            <SidebarMenuSubButton asChild>
+                                                <Link href={k.url}>
+                                                    <k.icon />
+                                                    {k.title}
+                                                </Link>
+                                            </SidebarMenuSubButton>
+                                        </SidebarMenuSubItem>))}
+                                    </SidebarMenuSub>
+                                </SidebarMenuItem>
+                                {/* Separador */}
+                                <SidebarSeparator />
+
+                                <SidebarMenuItem>
+                                    <SidebarMenuButton asChild>
+                                        <Link href={'/login'}>
+                                            <LogIn /> Iniciar Sesión
+                                        </Link>
+                                    </SidebarMenuButton>
+                                    <SidebarMenuButton asChild>
+                                        <Link href={'/login'}>
+                                            <UserPlus /> Registrase
+                                        </Link>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                            </SidebarMenu>
+                        )}
                 </SidebarGroup>
             </SidebarContent>
 
             <SidebarSeparator />
 
             {/* FOOTER */}
-            {isAuthenticated && (
-                <SidebarFooter>
-                    <SidebarMenu>
-                        <SidebarMenuItem>
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <SidebarMenuButton>
-                                        <User2 /> donJoe{" "}
-                                        <ChevronUp className="ml-auto opacity-70" />
-                                    </SidebarMenuButton>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end">
-                                    <DropdownMenuItem>
-                                        <User2 className="mr-2 h-4 w-4" />
-                                        Cuenta
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem>
-                                        <Settings className="mr-2 h-4 w-4" />
-                                        Ajustes
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem className="text-red-500">
-                                        <LogOut className="mr-2 h-4 w-4" />
-                                        Cerrar sesión
-                                    </DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        </SidebarMenuItem>
-                    </SidebarMenu>
-                </SidebarFooter>
-            )}
-        </Sidebar>
+            {
+                isAuthenticated && (
+                    <SidebarFooter>
+                        <SidebarMenu>
+                            <SidebarMenuItem>
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <SidebarMenuButton>
+                                            <User2 /> donJoe{" "}
+                                            <ChevronUp className="ml-auto opacity-70" />
+                                        </SidebarMenuButton>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent align="end">
+                                        <DropdownMenuItem>
+                                            <User2 className="mr-2 h-4 w-4" />
+                                            Cuenta
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem>
+                                            <Settings className="mr-2 h-4 w-4" />
+                                            Ajustes
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem className="text-red-500">
+                                            <LogOut className="mr-2 h-4 w-4" />
+                                            Cerrar sesión
+                                        </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            </SidebarMenuItem>
+                        </SidebarMenu>
+                    </SidebarFooter>
+                )
+            }
+        </Sidebar >
     );
 };
 

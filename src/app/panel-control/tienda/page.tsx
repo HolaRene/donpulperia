@@ -18,11 +18,11 @@ import {
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { ReseñaDialog } from "./components/ResenaDialog";
-import ProductCard from "./components/ProductCard";
 import { productos } from "@/data/mockProductos";
-import ResenaCard from "./components/ResenaCard";
 import { reseñasMock } from "@/data/resenas";
+import { ReseñaDialog } from "@/app/comercio/[id]/components/ResenaDialog";
+import ProductCard from "@/app/comercio/[id]/components/ProductCard";
+import ResenaCard from "@/app/comercio/[id]/components/ResenaCard";
 
 // Datos de ejemplo
 const comercioEjemplo = {
@@ -61,8 +61,8 @@ const PerfilComercio = () => {
         return (
             <div className="min-h-screen flex items-center justify-center">
                 <div className="text-center">
-                    <h2 className="text-2xl font-bold mb-2">Comercio no encontrado</h2>
-                    <Button onClick={() => router.push("/")}>Volver al listado</Button>
+                    <h2 className="text-2xl font-bold mb-2">Tu tienda no fue encontrada</h2>
+                    <Button onClick={() => router.push("/")}>Volver al inicio</Button>
                 </div>
             </div>
         );
@@ -91,7 +91,7 @@ const PerfilComercio = () => {
                         <ArrowLeft className="h-4 w-4" />
                         Volver
                     </Button>
-                    <h1 className="font-semibold">Perfil del comercio</h1>
+                    <h1 className="font-semibold">Perfil de tu tienda</h1>
                 </div>
             </header>
 
@@ -181,7 +181,8 @@ const PerfilComercio = () => {
                                 className="bg-green-600 hover:bg-green-700 gap-2"
                             >
                                 <MessageCircle className="h-4 w-4" />
-                                Contactar por WhatsApp
+                                Número de WhatsApp
+
                             </Button>
                             <ReseñaDialog onSubmit={handleNewReseña} />
                         </div>

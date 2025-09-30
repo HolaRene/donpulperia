@@ -1,5 +1,6 @@
 import { ArrowRight, BarChart3, MapPin, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export function Hero() {
     return (
@@ -19,11 +20,8 @@ export function Hero() {
 
                     <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
                         <Button size="lg" className="text-lg px-8 py-3">
-                            Comenzar Prueba Gratis
+                            <Link href={'/login'}>Comenzar Prueba Gratis</Link>
                             <ArrowRight className="ml-2 h-5 w-5" />
-                        </Button>
-                        <Button variant="outline" size="lg" className="text-lg px-8 py-3">
-                            Ver Demo en Vivo
                         </Button>
                     </div>
 
