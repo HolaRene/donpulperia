@@ -18,7 +18,6 @@ import {
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { ReseñaDialog } from "./components/ResenaDialog";
 import ProductCard from "./components/ProductCard";
 import { productos } from "@/data/mockProductos";
 import ResenaCard from "./components/ResenaCard";
@@ -68,10 +67,6 @@ const PerfilComercio = () => {
         );
     }
 
-    const handleNewReseña = (rating: number, comentario: string) => {
-        console.log('Nueva reseña:', { rating, comentario });
-        // Aquí se integraría con la API para guardar la reseña
-    };
 
     const handleWhatsAppClick = () => {
         window.open(`https://wa.me/${comercioEjemplo.whatsapp}`, "_blank");
@@ -183,7 +178,6 @@ const PerfilComercio = () => {
                                 <MessageCircle className="h-4 w-4" />
                                 Contactar por WhatsApp
                             </Button>
-                            <ReseñaDialog onSubmit={handleNewReseña} />
                         </div>
                     </div>
                 </motion.div>
