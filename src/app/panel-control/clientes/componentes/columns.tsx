@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Cliente } from "@/types/tipado_comercio";
+import Link from "next/link";
 
 const currency = (n: number) => `C$${n.toFixed(2)}`;
 
@@ -87,6 +88,9 @@ function ClienteActions({ cliente }: { cliente: Cliente }) {
                     <DropdownMenuSeparator />
                     <DropdownMenuItem onClick={() => setOpen(true)} className="gap-2">
                         <Eye className="h-4 w-4" /> Ver detalle
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="gap-2">
+                        <Link href={'/user/1'}>Ver user</Link>
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>

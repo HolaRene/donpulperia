@@ -20,9 +20,9 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { productos } from "@/data/mockProductos";
 import { reseñasMock } from "@/data/resenas";
-import { ReseñaDialog } from "@/app/comercio/[id]/components/ResenaDialog";
 import ProductCard from "@/app/comercio/[id]/components/ProductCard";
 import ResenaCard from "@/app/comercio/[id]/components/ResenaCard";
+import { EditarComercioDialog } from "@/app/comercio/[id]/components/ResenaDialog";
 
 // Datos de ejemplo
 const comercioEjemplo = {
@@ -30,8 +30,8 @@ const comercioEjemplo = {
     nombre: "Pulpería La Esperanza",
     categoria: "pulperia",
     descripcion: "La mejor pulpería del barrio con productos frescos y atención rápida.",
-    logo: "/placeholder.png",
-    coverImage: "/placeholder.png",
+    logo: "https://images.pexels.com/photos/33975356/pexels-photo-33975356.jpeg",
+    coverImage: "https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg",
     puntuacion: 4.5,
     totalReviews: 12,
     direccion: "Barrio Central, Teustepe, Boaco",
@@ -39,8 +39,8 @@ const comercioEjemplo = {
     departamento: "Boaco",
     lat: 12.3723,
     lng: -85.6594,
-    telefono: "+505 8855 0101",
-    whatsapp: "50588550101",
+    telefono: "+505 7777 7777",
+    whatsapp: "50577777777",
     horarioApertura: "08:00",
     horarioCierre: "18:00",
     diasLaborales: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"],
@@ -184,7 +184,7 @@ const PerfilComercio = () => {
                                 Número de WhatsApp
 
                             </Button>
-                            <ReseñaDialog onSubmit={handleNewReseña} />
+                            <EditarComercioDialog producto={comercioEjemplo} />
                         </div>
                     </div>
                 </motion.div>

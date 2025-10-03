@@ -93,7 +93,7 @@ export const columns: ColumnDef<Producto>[] = [
             const stock = row.original.stock
 
             const datos = row.original
-            let color = "text-green-900"
+            let color = "text-green-500"
             if (stock === 0) color = "text-red-500"
             else if (stock < 10) color = "text-yellow-600"
 
