@@ -90,7 +90,7 @@ function ClienteActions({ cliente }: { cliente: Cliente }) {
                         <Eye className="h-4 w-4" /> Ver detalle
                     </DropdownMenuItem>
                     <DropdownMenuItem className="gap-2">
-                        <Link href={'/user/1'}>Ver user</Link>
+                        <Eye className="h-4 w-4" /> <Link href={'/user/1'}>Ver user</Link>
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>

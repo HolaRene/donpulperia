@@ -16,8 +16,9 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import Image from "next/image"
-import { MoreHorizontal, ArrowUpDown } from "lucide-react"
+import { MoreHorizontal, ArrowUpDown, Eye } from "lucide-react"
 import { DataTableColumnHeader } from "./data-table-column-header"
+import Link from "next/link"
 
 // Definimos las columnas para Producto
 export const columns: ColumnDef<Producto>[] = [
@@ -114,7 +115,9 @@ export const columns: ColumnDef<Producto>[] = [
                             Copy payment ID
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>View customer</DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <Eye /><Link href={'/productos/1'}>Ver Producto</Link>
+                        </DropdownMenuItem>
                         <DropdownMenuItem>View payment details</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
