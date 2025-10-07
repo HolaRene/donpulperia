@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { Star, MapPin, Phone, Verified } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Comercio } from '@/types/tipado_comercio';
+import Image from 'next/image';
 
 interface ComercioCardProps {
     comercio: Comercio;
@@ -22,11 +23,13 @@ export function ComercioCard({ comercio, onClick, isSelected = false }: Comercio
                 <CardContent className="p-0">
                     <div className="flex h-32">
                         <div className="w-32 h-full flex-shrink-0">
-                            {/* <img
-                                src={comercio.logo}
+                            <Image
+                                src={"https://images.pexels.com/photos/3639538/pexels-photo-3639538.jpeg"}
                                 alt={comercio.nombre}
                                 className="w-full h-full object-cover"
-                            /> */}
+                                width={128}
+                                height={128}
+                            />
                         </div>
                         <div className="flex-1 p-4 flex flex-col justify-between">
                             <div>
